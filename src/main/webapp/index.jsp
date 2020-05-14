@@ -49,7 +49,7 @@
 		<b> Senha <input type="password" name="senha" /> </b>
 		<div id="button"> <br>
 			<button type="submit" name="submit"> Entrar </button>
-			<button type="reset"> Resetar senha </button>
+			<button type="reset"> Limpar Campos </button>
 		</div>
 	</form>
 
