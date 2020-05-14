@@ -9,22 +9,24 @@
 	<title> Tela de Login </title> 
 </head>
 
-<% // Escritura em Java
- 
+<% 
+// Escritura em Java
  	String erro = null;
 
-	if ("POST".equalsIgnoreCase(request.getMethod()) && request.getParameter("submit") != null) {		
-		String usuario = request.getParameter("usuario");
-		String senha = request.getParameter("senha");
-		
-		// O usuário será admin e a senha também admin. Caso contrário, retornará erro
-		
-	if ("admin".equalsIgnoreCase(usuario) && "admin".equalsIgnoreCase(senha)) {
-		out.print("Bem vindo, usuario " + usuario);
-		return;
+	if ("POST".equalsIgnoreCase(request.getMethod()) && request.getParameter("submit") != null) {%>
+		<jsp:useBean id="loginBean" class="br.com.nathaliacastro.TelaDeLogin.bean.LoginBean"> 
+			<jsp:setProperty name="loginBean" property="*" />
+		</jsp:useBean>
+		<%
+		if (loginBean.isValid()) {
+			out.println("<h2> Bem vindo </h2>");
+			out.println("Login realizado com sucesso.");
+			return;
 		} else {
-			erro = "Os dados digitados são inválidos, tente novamente.";
+			erro = "Os dados digitados são inválidos. Por favor, tente novamente.";
 		}
+		%>
+<%
 	}
 %>
 
@@ -33,11 +35,11 @@
 	<hr>
 	
 <%
-		if (erro != null) { %>
-			<span style="color: red;">  
-				<% out.print(erro); %>
-			</span>
-		<% 
+	if (erro != null) { %>
+		<span style="color: red;">  
+			<% out.print(erro); %>
+		</span>
+	<% 
 		}
 %>
 	
